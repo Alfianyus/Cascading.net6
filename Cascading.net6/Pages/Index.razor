@@ -1,9 +1,73 @@
 ﻿@page "/"
+@using DbModels;
+@inject DemoDbContext dbContext;
 
 <PageTitle>Index</PageTitle>
 
 <h5>Cashcading DropList</h5>
+<div class="row">
+    <div class="col-md-4">
+        <label>Country</label>
+        <select id="ddlCountry" class="form-control" value="@selectedCountryId">
+            <option value="0">-- Select Country --</option>
+            @foreach(var item in countries)
+            {
+                <option value="@item.Id">"@item.Name"</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label>State</label>
+        <select id="ddlState" class="form-control" value="@selectedStateId">
+            <option value="0">-- Select State --</option>
+            @foreach (var item in states)
+            {
+                <option value="@item.Id">"@item.Name"</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label>City</label>
+        <select id="ddlCity" class="form-control" value="@selectedCityId">
+            <option value="0">-- Select City --</option>
+            @foreach (var item in cities)
+            {
+                <option value="@item.Id">"@item.Name"</option>
+            }
+        </select>
+    </div>
+</div>
+<div>
+    @text
+</div>
 
 @code{
+    public List<Country> countries = new List<Country>();
+    public List<State> states = new List<State>();
+    public List<City> cities = new List<City>();
+    public int selectedCountryId = 0;
+    public int selectedStateId = 0;
+    public int selectedCityId=0;
+    public string text = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        GetCountries();
+        base.OnInitialized();
+    }
+
+    public void GetCountries()
+    {
+        countries=
+        
+    }
+    public void GetStatesByCountryId(int countryId)
+    {
+
+    }
+    public void GetCitiesByStateId(int stateId)
+    {
+
+    }
 
 }
